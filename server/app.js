@@ -15,6 +15,9 @@ async function init() {
 
   app.use(cors());
   app.use(bodyParser.json());
+  app.use(express.json());
+
+  app.use("/auth", authRouter);
   app.use("/posts", postRouter);
   app.use("/auth", authRouter);
 
