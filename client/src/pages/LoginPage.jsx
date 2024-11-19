@@ -5,15 +5,19 @@ function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // 🐨 Todo: Exercise #4 step:5
   const { login } = useAuth();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 🐨 Todo: Exercise #4
-    //  นำ Function `login` ใน AuthContext มา Execute ใน Event Handler ตรงนี้
-    login({ username, password });
+
+    login({
+      username,
+      password,
+    });
   };
 
+  
   return (
     <div className="login-form-container">
       <form className="login-form" onSubmit={handleSubmit}>

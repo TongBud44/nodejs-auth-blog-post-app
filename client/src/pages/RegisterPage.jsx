@@ -9,10 +9,10 @@ function RegisterPage() {
 
   const { register } = useAuth();
 
+  // 🐨 Todo: Exercise #2
+  // นำ Function `register` ใน AuthContext มา Execute ใน Event Handler ตรงนี้
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 🐨 Todo: Exercise #2
-    // นำ Function `register` ใน AuthContext มา Execute ใน Event Handler ตรงนี้
     const data = {
       username,
       password,
