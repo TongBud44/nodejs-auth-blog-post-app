@@ -3,14 +3,14 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import postRouter from "./apps/posts.js";
 import authRouter from "./apps/auth.js";
-import dotenv from "dotenv";
+import dotenv from "dotenv"; //Step 3: Generating a token
 import { client } from "./utils/db.js";
 
 async function init() {
-  dotenv.config();
-  const app = express();
+  dotenv.config(); ////Step 3: Generating a token
   const port = 4000;
 
+  const app = express();
   await client.connect();
 
   app.use(cors());

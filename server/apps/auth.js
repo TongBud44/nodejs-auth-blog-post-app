@@ -34,19 +34,19 @@ authRouter.post("/register", async (req, res) => {
 });
 
 // 🐨 Todo: Exercise #3
-// ให้สร้าง API เพื่อเอาไว้ Login ตัว User ตามตารางที่ออกแบบไว้
+// step 2 :อันดับแรก เราจะเริ่มจากการสร้าง API POST: /auth/login เพื่อใช้ Login
 authRouter.post("/login", async (req, res) => {
   try {
     const user = await db.collection("users").findOne({
       username: req.body.username,
     });
-
+    //step 2 :ขั้นแรกเราจะตรวจสอบว่า Username นี้มีในระบบหรือไม่ ด้วยการ Query หาใน Collection users ถ้าไม่มีก็ให้ Return ตัว Response กลับไปด้วย message ว่า user not found
     if (!user) {
       return res.status(400).json({
         message: "User not found",
       });
     }
-
+    //step 2 :ถ้ามี Username ในระบบ เราจะไปตรวจสอบ Password ต่อ ว่าตรงกับใน Database หรือไม่
     const isValidPassword = await bcrypt.compare(
       req.body.password,
       user.password
@@ -57,7 +57,7 @@ authRouter.post("/login", async (req, res) => {
         message: "Password is not valid",
       });
     }
-
+    //step 3 ต่อเนื่องจากด้านบน เมื่อ Password ตรงกันกับใน Database แล้ว ฝั่ง Server ก็จะต้องสร้าง Token ขึ้นมา ด้วย Function jwt.sign จาก Package jsonwebtoken
     const token = jwt.sign(
       {
         id: user._id,
@@ -67,7 +67,7 @@ authRouter.post("/login", async (req, res) => {
       process.env.SECRET_KEY,
       { expiresIn: "900000" }
     );
-
+    //Step 4: เมื่อสร้าง Token เสร็จเรียบร้อยแล้ว เราจะส่ง Response พร้อม Token ออกไปให้ Client
     return res.json({
       message: "Login successfully",
       token,
