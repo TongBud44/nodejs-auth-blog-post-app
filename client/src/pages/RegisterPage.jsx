@@ -3,8 +3,8 @@ import { useAuth } from "../contexts/authentication";
 
 function RegisterPage() {
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const { register } = useAuth();
@@ -14,10 +14,10 @@ function RegisterPage() {
     // 🐨 Todo: Exercise #2
     // นำ Function `register` ใน AuthContext มา Execute ใน Event Handler ตรงนี้
     const data = {
-      username,
+      email,
       password,
-      firstName,
-      lastName,
+      username,
+      name,
     };
     register(data);
   };
@@ -28,16 +28,16 @@ function RegisterPage() {
         <h1>Register Form</h1>
         <div className="input-container">
           <label>
-            Username
+            Email
             <input
               id="username"
               name="username"
               type="text"
               placeholder="Enter username here"
               onChange={(event) => {
-                setUsername(event.target.value);
+                setEmail(event.target.value);
               }}
-              value={username}
+              value={email}
             />
           </label>
         </div>
@@ -58,31 +58,31 @@ function RegisterPage() {
         </div>
         <div className="input-container">
           <label>
-            First Name
+            Username
             <input
               id="firstname"
               name="firstname"
               type="text"
               placeholder="Enter first name here"
               onChange={(event) => {
-                setFirstName(event.target.value);
+                setUsername(event.target.value);
               }}
-              value={firstName}
+              value={username}
             />
           </label>
         </div>
         <div className="input-container">
           <label>
-            Last Name
+            Name
             <input
               id="lastname"
               name="lastname"
               type="text"
               placeholder="Enter last name here"
               onChange={(event) => {
-                setLastName(event.target.value);
+                setName(event.target.value);
               }}
-              value={lastName}
+              value={name}
             />
           </label>
         </div>

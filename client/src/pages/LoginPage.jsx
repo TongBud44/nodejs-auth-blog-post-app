@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../contexts/authentication";
 
 function LoginPage() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { login } = useAuth();
@@ -11,7 +11,7 @@ function LoginPage() {
     event.preventDefault();
     // 🐨 Todo: Exercise #4
     //  นำ Function `login` ใน AuthContext มา Execute ใน Event Handler ตรงนี้
-    login({ username, password });
+    login({ email, password });
   };
 
   return (
@@ -20,16 +20,16 @@ function LoginPage() {
         <h1>Login Page</h1>
         <div className="input-container">
           <label>
-            Username
+            Email
             <input
               id="username"
               name="username"
               type="text"
               placeholder="Enter username here"
               onChange={(event) => {
-                setUsername(event.target.value);
+                setEmail(event.target.value);
               }}
-              value={username}
+              value={email}
             />
           </label>
         </div>

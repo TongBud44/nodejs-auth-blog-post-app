@@ -1,10 +1,12 @@
-import { MongoClient } from "mongodb";
+// Create PostgreSQL Connection Pool here !
+import * as pg from "pg";
 
-const connectionString = "mongodb://localhost:27017";
+const { Pool } = pg.default;
 
-export const client = new MongoClient(connectionString, {
-  useUnifiedTopology: true,
+const connectionPool = new Pool({
+  // ตรงนี้ต้องเปลี่ยน connectionString เป็นของตัวเองด้วยนะ
+  connectionString: "postgresql://postgres.kqksryqiitqqjuvhzmoe:ieFJOcjqKWcXoc3s@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres"
 });
 
-export const db = client.db("practice-mongo");
+export default connectionPool;
 
